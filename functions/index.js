@@ -4,8 +4,8 @@ const ytdl = require("ytdl-core");
 const app = express();
 const serverless = require("serverless-http");
 const corsOptions = {
-  // origin: "https://ytdownloadfrontend.netlify.app",
-  origin: "http://localhost:3000",
+  origin: "https://mplayer1.netlify.app/",
+//   origin: "http://localhost:3000",
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
   exposedHeaders: "**",
