@@ -1,20 +1,23 @@
+const dotenv = require("dotenv");
+dotenv.config({ path: ".env" });
 const cors = require("cors");
 const express = require("express");
-const ytdl = require("ytdl-core");
+var bodyParser = require("body-parser");
 const app = express();
-const serverless = require("serverless-http");
+const router = express.Router();
+const ytdl = require("ytdl-core");
+app.use(bodyParser.json());
+const port = process.env.PORT || 8000;
 const corsOptions = {
   origin: "https://mplayer1.netlify.app",
-//   origin: "http://localhost:3000",
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
-  exposedHeaders: "**",
 };
 app.use(cors(corsOptions));
-const router = express.Router();
-var bodyParser = require("body-parser");
-app.use(bodyParser.json());
+
+// const User = require("./models/UserSchema");
 app.use(express.json());
+app.use(router);
 router.get("/", (req, res) => {
   res.send("Hello");
 });
@@ -56,6 +59,8 @@ router.get("/myplay", async (req, res) => {
     console.log(err);
   }
 });
+
+
 
 app.use("/", router);
 
